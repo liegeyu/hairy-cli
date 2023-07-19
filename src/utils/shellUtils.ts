@@ -30,3 +30,23 @@ export const rmCommand = (path: String): Boolean => {
   const res = shell.rm('-rf', path);
   return res.code === 0;
 }
+
+/**
+ * 创建文件夹
+ * @param {String} path 
+ * @returns {Boolean}
+ */
+export const mkdirCommand = (dirPath: String): Boolean => {
+  const res = shell.mkdir('-p', dirPath);
+  return res.code === 0;
+}
+
+/**
+ * 创建文件
+ * @param {String} filePath 
+ * @returns {Boolean}
+ */
+export const touchCommand = (filePath: String): Boolean => {
+  const res = shell.touch(filePath);
+  return res.code === 0;
+}

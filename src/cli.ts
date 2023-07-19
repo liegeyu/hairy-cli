@@ -23,14 +23,14 @@ program
     .action(Action.listAction);
 
 program
-    .command('add page <pageName>')
+    .command('addpage <pageName>')
     .description('添加页面')
-    .option('-v2, --vue2', '使用 Vue2')
-    .option('-v3, --vue3', '使用 Vue3')
+    .option('-vue2, --vue2', '使用 Vue2')
+    .option('-vue3, --vue3', '使用 Vue3')
     .option('-ts, --typescript', '使用 TypeScript')
     .option('-less, --less', '使用 Less')
     .option('-scss, --scss', '使用 scss')
-    .action(Action.addPage);
+    .action(Action.addPageAction);
 
 // 解析参数
 program.parse(process.argv);

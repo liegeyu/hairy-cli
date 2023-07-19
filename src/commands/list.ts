@@ -1,3 +1,4 @@
+// list-action
 import templateJson from '../config/template-des.json';
 
 function listAction() {

@@ -3,7 +3,6 @@ import fs from "fs";
 import inquirer from "inquirer";
 import chalk from "chalk";
 import ora from "ora";
-import shell from "shelljs";
 import templateJson from "../config/template-des.json";
 
 import { execCommand, rmCommand } from "../utils/shellUtils";
@@ -38,7 +37,7 @@ function checkFileExists(proName: String): String {
   const proPath = `${basePath}/${proName}`;
 
   if (fs.existsSync(proPath)) {
-    console.log(chalk.red('x'), `当前目录已存在${proName}项目`);
+    console.error(chalk.red('×'), `当前目录已存在${proName}项目`);
     process.exitCode = 1;
     return '';
   }
