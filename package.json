@@ -3,12 +3,14 @@
   "version": "1.0.0",
   "description": "idea-cli for web-front",
   "main": "cli.js",
+  "type": "module",
   "bin": {
     "ia-cli": "bin/src/cli.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "rollup -c",
+    "build:ts": "tsc"
   },
   "author": "wenliang",
   "license": "ISC",
@@ -22,6 +24,11 @@
     "typescript": "^5.1.6"
   },
   "devDependencies": {
-    "@types/inquirer": "^8.0.0"
+    "@rollup/plugin-json": "^6.0.0",
+    "@rollup/plugin-node-resolve": "^15.1.0",
+    "@rollup/plugin-typescript": "^11.1.2",
+    "@types/inquirer": "^8.0.0",
+    "rollup": "^3.26.3",
+    "rollup-plugin-ejs": "^4.0.0"
   }
 }

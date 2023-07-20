@@ -1,4 +1,6 @@
 // addpage-action
+import fs from "fs";
+import path from "path";
 import chalk from "chalk";
 
 import { mkdirCommand, touchCommand } from "../utils/shellUtils";
@@ -17,14 +19,14 @@ function addPageAction(pagename: String, options: OptionsObj) {
     console.error(chalk.red('×'), '所选版本冲突');
   }
 
+  mkdirCommand(`${pagename}`);
+  touchCommand(`${pagename}/index.vue`);
 
-  console.log('添加页面:', pagename);
-  console.log('选项:', options);
-  console.log('- Vue 3:', vue3);
-  console.log('- Vue 3:', vue2);
-  console.log('- TypeScript:', typescript);
-  console.log('- Less:', less);
-  console.log('- Less:', scss);
+  const vueVersion = vue2 ? 'vue2' : 'vue3';
+  const templatePath = path.resolve(__dirname + `/templates/${vueVersion}-template.ejs`)
+  const template = fs.readFileSync(templatePath, "utf-8");
+  console.log(template);
+
 }
 
 export default addPageAction;
