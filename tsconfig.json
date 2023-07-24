@@ -1,0 +1,15 @@
+{
+    "include": ["src", "src/templates"],
+    "exclude": ["node_modules"],
+    "compilerOptions": {
+        "outDir": "bin",
+        "target": "ESNext",
+        "module": "CommonJS",
+        "paths": {
+            "@": ["./src"]
+        },
+        "esModuleInterop": true,
+        "moduleResolution": "NodeNext",
+        "resolveJsonModule": true,
+    }
+}
