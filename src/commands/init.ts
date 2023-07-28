@@ -33,11 +33,11 @@ const questions = [
  * @return {Stirng} proPath
  */
 function checkFileExists(proName: String): String {
-  const basePath = process.cwd();
-  const proPath = `${basePath}/${proName}`;
+  const basePath: string = process.cwd();
+  const proPath: fs.PathLike = `${basePath}/${proName}`;
 
   if (fs.existsSync(proPath)) {
-    console.error(chalk.red('×'), `当前目录已存在${proName}项目`);
+    console.error(chalk.red('×') + `当前目录已存在${proName}项目`);
     process.exitCode = 1;
     return '';
   }

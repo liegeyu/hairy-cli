@@ -1,5 +1,7 @@
 // shelljs's util
 import shell from "shelljs";
+import chalk from "chalk";
+import fs from "fs";
 
 /**
  * 执行 shell 命令
@@ -33,20 +35,26 @@ export const rmCommand = (path: String): Boolean => {
 
 /**
  * 创建文件夹
- * @param {String} path 
+ * @param {fs.PathLike} path 
  * @returns {Boolean}
  */
-export const mkdirCommand = (dirPath: String): Boolean => {
+export const mkdirCommand = (dirPath: fs.PathLike): Boolean => {
+  if (fs.existsSync(dirPath)) {
+    throw new Error("已存在该文件夹")
+  }
   const res = shell.mkdir('-p', dirPath);
   return res.code === 0;
 }
 
 /**
  * 创建文件
- * @param {String} filePath 
+ * @param {fs.PathLike} filePath 
  * @returns {Boolean}
  */
-export const touchCommand = (filePath: String): Boolean => {
+export const touchCommand = (filePath: fs.PathLike): Boolean => {
+  if (fs.existsSync(filePath)) {
+    throw new Error("已存在文件, 快去工作区看看吧");
+  }
   const res = shell.touch(filePath);
   return res.code === 0;
 }
