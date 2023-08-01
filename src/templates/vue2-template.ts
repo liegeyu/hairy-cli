@@ -1,6 +1,6 @@
 export default 
 `<template>
-  <div <%= htmlTitle %>>
+  <div <%- 'class="' + htmlTitle + '"' %>>
     <!-- Your template content here -->
   </div>
 </template>
@@ -18,14 +18,14 @@ export default
     },
     created() {
 
-    }
+    },
     methods: {
 
     }
   }
 </script>
 
-<style <%= cssPreprocessor %> scoped>
+<style<%- cssPreprocessor ? ' lang="' + cssPreprocessor + '"' : '' %> scoped>
 /* Your styles here */
 </style>
 `

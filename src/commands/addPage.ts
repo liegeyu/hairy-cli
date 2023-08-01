@@ -23,7 +23,9 @@ interface TemplateParams {
 }
 
 function addPageAction(pagename: String, options: OptionsObj) {
-  const spinner = ora().start("正在努力创建页面...");
+  const spinner = ora();
+  spinner.start("正在努力创建页面...");
+  console.log("")
   const { vue2, vue3, typescript, less, scss } = options;
   if ((vue2 && vue3) || (less && scss)) {
     console.error(chalk.red('×'), '所选版本冲突');
@@ -34,14 +36,19 @@ function addPageAction(pagename: String, options: OptionsObj) {
     touchCommand(`${pagename}/index.vue`);
   
     let ejsContent: string = "";
-    const templateParams: TemplateParams = {}
+    const templateParams: TemplateParams = {};
+    templateParams.htmlTitle = pagename;
+
     if (vue2) {
+      ejsContent = vue2Template;
       templateParams.htmlTitle = "";
     } else {
+      ejsContent = vue3Template;
       templateParams.scriptType = typescript ? "ts" : "";
     }
     templateParams.cssPreprocessor = less ? "less" : scss ? "scss" : "";    
-    const renderContent: string = renderTemplate(ejsContent, { name: "张三" });
+
+    const renderContent: string = renderTemplate(ejsContent, templateParams);
     fs.writeFileSync(`${pagename}/index.vue`, renderContent, 'utf-8');
     spinner.succeed("创建成功");
   } catch (err) {

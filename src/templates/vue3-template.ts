@@ -3,7 +3,7 @@ export default
   <!-- Your template code goes here -->
 </template>
 
-<script setup lang="<%= scriptType %>">
+<script setup<%- scriptType ? ' lang="' + scriptType + '"' : '' %>>
 import { ref, computed, onCreated } from 'vue'
 import { useStore } from 'vuex'
 import { useRoute, useRouter } from 'vue-router'
@@ -18,7 +18,7 @@ onCreated(() => {
 
 </script>
 
-<style <%= cssPreprocessor %> scoped>
+<style<%- cssPreprocessor ? ' lang="' + cssPreprocessor + '"' : '' %> scoped>
 /* Your styles here */
 </style>
 `
